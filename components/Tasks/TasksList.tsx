@@ -10,7 +10,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, Circle, Loader2, Trash2 } from "lucide-react";
+import { CheckCircle2, Circle, Trash2, ListTodo } from "lucide-react";
+import { LoadingSpinner, EmptyState } from "@/components/ui/loading";
 
 interface Props {
   toggleTask: (id: Id<"tasks">) => Promise<void>;
@@ -23,21 +24,18 @@ const TasksList = ({ toggleTask, deleteTask }: Props) => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center p-8">
-        <Loader2 className="h-6 w-6 animate-spin" />
-        <span className="ml-2">Loading tasks...</span>
+        <LoadingSpinner text="Loading tasks..." />
       </div>
     );
   }
 
   if (tasks.length === 0) {
     return (
-      <div className="rounded-lg border border-dashed p-12 text-center">
-        <Circle className="text-muted-foreground mx-auto mb-4 h-12 w-12" />
-        <h3 className="mb-2 text-lg font-semibold">No tasks yet</h3>
-        <p className="text-muted-foreground">
-          Add your first task above to get started!
-        </p>
-      </div>
+      <EmptyState
+        icon={ListTodo}
+        title="No tasks yet"
+        description="Add your first task above to get started!"
+      />
     );
   }
 
