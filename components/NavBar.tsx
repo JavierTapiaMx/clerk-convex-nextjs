@@ -7,7 +7,7 @@ const NavBar = async () => {
 
   return (
     <>
-      <header className="bg-sidebar-primary text-sidebar-primary-foreground border-sidebar-ring sticky top-0 z-10 flex flex-row items-center justify-between border-b-10 p-4">
+      <header className="bg-sidebar-primary text-sidebar-primary-foreground border-sidebar-border sticky top-0 z-10 flex flex-row items-center justify-between border-b-10 p-4">
         <span>Convex + Next.js + Clerk</span>
         <div className="flex flex-row items-center gap-4">
           <span>🚀</span>
