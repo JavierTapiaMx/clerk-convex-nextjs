@@ -8,22 +8,20 @@ const NavBar = async () => {
   return (
     <>
       <header className="bg-sidebar-primary text-sidebar-primary-foreground border-sidebar-ring sticky top-0 z-10 flex flex-row items-center justify-between border-b-10 p-4">
-        <div className="flex flex-row items-center gap-20">
-          <span>Convex + Next.js + Clerk</span>
+        <span>Convex + Next.js + Clerk</span>
+        <div className="flex flex-row items-center gap-4">
           <span>🚀</span>
-          <div>
-            <Link href="/" className="mr-4">
-              Home
-            </Link>
-            <Link href="/tasks">Tasks</Link>
-          </div>
+          <Link href="/">Home</Link>
+          <Link href="/tasks">Tasks</Link>
         </div>
-        {user && (
-          <span>
-            Welcome {user.fullName || user.emailAddresses[0]?.emailAddress}!
-          </span>
-        )}
-        <UserButton />
+        <div className="flex flex-row items-center gap-4">
+          {user && (
+            <span>
+              Welcome {user.fullName || user.emailAddresses[0]?.emailAddress}!
+            </span>
+          )}
+          <UserButton />
+        </div>
       </header>
     </>
   );
