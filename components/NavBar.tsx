@@ -4,6 +4,7 @@ import Link from "next/link";
 
 const NavBar = async () => {
   const user = await currentUser();
+  console.log(user);
 
   return (
     <>
@@ -18,7 +19,11 @@ const NavBar = async () => {
             <Link href="/tasks">Tasks</Link>
           </div>
         </div>
-        {user && <span>Welcome {user.fullName}!</span>}
+        {user && (
+          <span>
+            Welcome {user.fullName || user.emailAddresses[0]?.emailAddress}!
+          </span>
+        )}
         <UserButton />
       </header>
     </>
