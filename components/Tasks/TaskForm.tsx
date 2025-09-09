@@ -42,13 +42,13 @@ const TaskForm = ({ addTask }: Props) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex justify-center items-center w-full mb-4 gap-4"
+        className="mb-4 flex w-full items-center justify-center gap-4"
       >
         <FormField
           control={form.control}
           name="description"
           render={({ field }) => (
-            <FormItem className="flex justify-center items-center w-full">
+            <FormItem className="flex w-full items-center justify-center">
               <FormLabel>Description</FormLabel>
               <FormControl>
                 <Input placeholder="Task description" {...field} />

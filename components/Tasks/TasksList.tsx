@@ -20,7 +20,7 @@ const TasksList = ({ toggleTask, deleteTask }: Props) => {
   const tasks = useQuery(api.tasks.getTasks) || [];
 
   return (
-    <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 w-full">
+    <div className="rounded-box border-base-content/5 bg-base-100 w-full overflow-x-auto border">
       <Table className="table">
         <TableCaption>A list of your recent tasks.</TableCaption>
         <TableHeader>

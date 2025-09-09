@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 
 const TasksPage = () => {
   return (
-    <div className="p-4 flex flex-col items-center">
-      <h1 className="text-4xl font-bold mb-4">Tasks</h1>
+    <div className="flex flex-col items-center p-4">
+      <h1 className="mb-4 text-4xl font-bold">Tasks</h1>
       <Tasks />
       <Link href="/" className="btn mt-6">
         <Button>Go Back</Button>
