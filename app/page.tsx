@@ -4,6 +4,8 @@ import { Authenticated, Unauthenticated } from "convex/react";
 import { SignUpButton } from "@clerk/nextjs";
 import { SignInButton } from "@clerk/nextjs";
 import { UserButton } from "@clerk/nextjs";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
@@ -48,7 +50,9 @@ function SignInForm() {
 function Content() {
   return (
     <div className="flex flex-col gap-8 max-w-lg mx-auto">
-      <p>Welcome</p>
+      <Link href="/tasks" className="btn">
+        <Button>View Tasks</Button>
+      </Link>
     </div>
   );
 }
