@@ -1,5 +1,6 @@
 import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
+import type { Id } from "@/convex/_generated/dataModel";
 import {
   Table,
   TableBody,
@@ -12,8 +13,8 @@ import {
 import { Button } from "@/components/ui/button";
 
 interface Props {
-  toggleTask: (id: string) => void;
-  deleteTask: (id: string) => void;
+  toggleTask: (id: Id<"tasks">) => void;
+  deleteTask: (id: Id<"tasks">) => void;
 }
 
 const TasksList = ({ toggleTask, deleteTask }: Props) => {

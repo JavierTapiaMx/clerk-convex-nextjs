@@ -16,13 +16,13 @@ const Tasks = () => {
     toast.success("Task added successfully!");
   };
 
-  const handleToggleTask = async (id: string) => {
-    await toggleTask({ id: id as unknown as Id<"tasks"> });
+  const handleToggleTask = async (id: Id<"tasks">) => {
+    await toggleTask({ id });
     toast.success("Task status updated!");
   };
 
-  const handleDeleteTask = async (id: string) => {
-    await deleteTask({ id: id as unknown as Id<"tasks"> });
+  const handleDeleteTask = async (id: Id<"tasks">) => {
+    await deleteTask({ id });
     toast.success("Task deleted successfully!");
   };
 
