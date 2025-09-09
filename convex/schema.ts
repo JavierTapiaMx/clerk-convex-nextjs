@@ -9,5 +9,6 @@ export default defineSchema({
   tasks: defineTable({
     description: v.string(),
     completed: v.boolean(),
+    owner: v.string(),
   }),
 });

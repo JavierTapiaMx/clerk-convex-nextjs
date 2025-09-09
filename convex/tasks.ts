@@ -3,8 +3,14 @@ import { v } from "convex/values";
 
 export const getTasks = query({
   args: {},
-  handler(ctx) {
-    return ctx.db.query("tasks").collect();
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("Not authenticated");
+
+    return ctx.db
+      .query("tasks")
+      .filter((q) => q.eq(q.field("owner"), identity.email))
+      .collect();
   },
 });
 
@@ -13,7 +19,14 @@ export const addTask = mutation({
     description: v.string(),
   },
   handler: async (ctx, args) => {
-    const task = { description: args.description, completed: false };
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("Not authenticated");
+
+    const task = {
+      description: args.description,
+      completed: false,
+      owner: identity.email!,
+    };
     const id = await ctx.db.insert("tasks", task);
     return await ctx.db.get(id);
   },
