@@ -35,8 +35,7 @@ export const getTasks = query({
 
     return ctx.db
       .query("tasks")
-      .filter((q) => q.eq(q.field("owner"), identity.email))
-      .order("desc") // Show newest tasks first
+      .withIndex("by_owner", (q) => q.eq("owner", identity.email!))
       .collect();
   },
 });
