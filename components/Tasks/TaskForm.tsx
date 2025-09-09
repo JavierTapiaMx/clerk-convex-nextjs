@@ -1,8 +1,6 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -13,29 +11,23 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
-const formSchema = z.object({
-  description: z.string().min(2).max(100).trim().nonempty(),
-});
+import { taskFormSchema, type TaskFormSchema } from "@/lib/validations/task";
 
 interface Props {
-  addTask: (description: string) => void;
+  addTask: (description: string) => Promise<void>;
 }
 
 const TaskForm = ({ addTask }: Props) => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<TaskFormSchema>({
+    resolver: zodResolver(taskFormSchema),
     defaultValues: {
       description: "",
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    addTask(values.description.trim());
-
+  const onSubmit = async (values: TaskFormSchema) => {
+    await addTask(values.description);
     form.reset();
-
-    console.log(values);
   };
 
   return (
@@ -49,15 +41,21 @@ const TaskForm = ({ addTask }: Props) => {
           name="description"
           render={({ field }) => (
             <FormItem className="flex w-full items-center justify-center">
-              <FormLabel>Description</FormLabel>
+              <FormLabel className="sr-only">Task Description</FormLabel>
               <FormControl>
-                <Input placeholder="Task description" {...field} />
+                <Input
+                  placeholder="Enter task description..."
+                  {...field}
+                  disabled={form.formState.isSubmitting}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button>Add Task</Button>
+        <Button type="submit" disabled={form.formState.isSubmitting}>
+          {form.formState.isSubmitting ? "Adding..." : "Add Task"}
+        </Button>
       </form>
     </Form>
   );
