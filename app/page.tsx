@@ -7,7 +7,7 @@ import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-export default function Home() {
+const HomePage = () => {
   return (
     <>
       <header className="sticky top-0 z-10 bg-background p-4 border-b-2 border-slate-200 dark:border-slate-800 flex flex-row justify-between items-center">
@@ -27,12 +27,14 @@ export default function Home() {
       </main>
     </>
   );
-}
+};
+
+export default HomePage;
 
 function SignInForm() {
   return (
     <div className="flex flex-col gap-8 w-96 mx-auto">
-      <p>Log in to see the numbers</p>
+      <p>Log in to see the tasks</p>
       <SignInButton mode="modal">
         <button className="bg-foreground text-background px-4 py-2 rounded-md">
           Sign in
