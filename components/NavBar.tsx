@@ -4,7 +4,6 @@ import Link from "next/link";
 
 const NavBar = async () => {
   const user = await currentUser();
-  console.log(user);
 
   return (
     <>
